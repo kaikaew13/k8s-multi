@@ -22,3 +22,15 @@ after_success:
   - docker push kaikaew13/multi-nginx
   - docker push kaikaew13/multi-server
   - docker push kaikaew13/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-2'
+  app: 'docker-multi'
+  env: 'Dockermulti-env'
+  bucket_name: 'elasticbeanstalk-us-east-2-781167765717'
+  bucket_path: 'docker-multi'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
